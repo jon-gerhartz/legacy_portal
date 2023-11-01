@@ -13,14 +13,17 @@ function getFirstImageOrDefault(item: any, defaultVal: string) {
 }
 
 const ProjectCard = ({ item }: Props) => {
-  const src = decodeURIComponent(getFirstImageOrDefault(item, projects_backup));
-  console.log(src);
+  const src = getFirstImageOrDefault(item, projects_backup);
+  const cardStyle = {
+    backgroundImage: `url(${src})`,
+    backgroundPosition: "center",
+    backgroundSize: "cover",
+    height: "400px", // Set your desired height
+  };
   return (
     <a href={`/projects/${item.id}`}>
       <div className="h-100 border-2 border-gray-300">
-        <div className="items-center">
-          <img src={src} alt="img" className={imgClassName} />
-        </div>
+        <div style={cardStyle} className="h-100"></div>
         <div className="p-4 hover:opacity-50">
           <h1 className="text-xl font-bold">{item["deal_name"]}</h1>
           <p className="text-md">{item.location}</p>
